@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cadastro de Departamento</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="btn btn-dark navbar-toggle float-left">
+						<i class="fas fa-bars"></i>
+					</button>				
+					<a class="navbar-brand navbar-toggle float-left" href="#">Cadastro de Departamento</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	
+	<div class="layout-main">
+	
+	    <aside>
+	        <nav class="sidebar sidebar-open">
+	            <ul class="nav nav-pills">
+	                <li class="nav-item"><a class="nav-link " href="/"> <i
+	                        class="fas fa-home"></i> <span>Home</span>
+	                </a></li>
+	            </ul>
+	
+	            <ul class="nav nav-pills">
+	                <li class="nav-item"><span class="nav-link active">Departamentos</span></li>
+	                <li class="nav-item"><a class="nav-link"
+	                                        href="/departamentos/cadastrar"> <i class="fas fa-plus"></i>
+	                    <span>Cadastrar</span>
+	                </a></li>
+	                <li class="nav-item"><a class="nav-link"
+	                                        href="/departamentos/listar"> <i class="fas fa-list"></i>
+	                    <span>Listar </span>
+	                </a></li>
+	            </ul>
+	
+	            <ul class="nav nav-pills">
+	                <li class="nav-item"><span class="nav-link active">Cargos</span></li>
+	                <li class="nav-item"><a class="nav-link"
+	                                        href="/cargos/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
+	                </a></li>
+	                <li class="nav-item"><a class="nav-link"
+	                                        href="/cargos/listar"> <i
+	                        class="fas fa-list"></i> <span>Listar </span>
+	                </a></li>
+	            </ul>
+	
+	            <ul class="nav nav-pills">
+	                <li class="nav-item"><span class="nav-link active">Funcionários</span></li>
+	                <li class="nav-item"><a class="nav-link"
+	                                        href="/funcionarios/cadastrar"> <i class="fas fa-plus"></i>
+	                    <span>Cadastrar </span>
+	                </a></li>
+	                <li class="nav-item"><a class="nav-link"
+	                                        href="/funcionarios/listar"> <i class="fas fa-list"></i>
+	                    <span>Listar </span>
+	                </a></li>
+	            </ul>
+	        </nav>
+	    </aside>
+	
+	    <section class="layout-content">
+	
+	        <nav class="navbar navbar-expand-md bg-light">
+	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item active">
+	                        <i class="fas fa-caret-right"></i>
+	                        <span>Cadastrar Departamentos</span>
+	                    </li>
+	                </ul>
+	                <a class="btn btn-primary btn-md" href="/departamentos/listar" role="button">
+	                    <span class="fas fa-list" title="Listar" aria-hidden="true"></span>
+	                    <span>Listar Departamentos</span>
+	                </a>
+	            </div>
+	        </nav>
+	
+	        <div class="container" id="cadastro">
+	            <form action="/departamentos/salvar" method="POST">
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="nome">Departamento</label>
+	                        <input type="text" class="form-control" id="nome"
+	                               placeholder="Nome Departamento" autofocus="autofocus" name="nome" value=""/>
+	                    </div>
+	                </div>
+	                <input type="hidden" id="id" name="id" value=""/>
+	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+	            </form>
+	        </div>
+	    </section>
+	
+	</div>
+	
+    <footer class="layout-footer">
+        <div class="container">
+            <span class="footer-copy">&copy; Baseado no curso de MBallem (2018). Todos os direitos reservados.</span>
+        </div>
+    </footer>
+</body>
+</html>
