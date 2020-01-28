@@ -1,85 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title>Cadastros</title>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<meta name="description" content=""/>
-	<meta name="author" content=""/>
-	<!-- caso precise adicionar uma figura na aba da página, utilize este comando -->
-	<!-- vale ressaltar que deve-se adicionar a pasta image dentro de static -->
-	<!-- <link rel="icon" href="/image/nome_da_figura.extensão"/> -->
-
-	<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-	
-	<!-- Custom styles for this template -->
-	<link href="/css/style.css" rel="stylesheet"/>
-</head>
+<!-- foi adicionado o layout:decorate. O layout dentro das chaves é o nome da página ao qual adicionaremos o fragmento corpo-->
+<html layout:decorate = "~{layout}">
+<head><meta charset="UTF-8"/></head>
 <body>
-	<header>
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle float-left">
-						<i class="fas fa-bars"></i>
-					</button>
-					<a class="navbar-brand " href="#">Cadastros</a>
-				</div>
-			</div>
-		</nav>
-	</header>
 	
-	<div class="layout-main">	
-	
-		<aside>
-			<nav class="sidebar sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i
-							class="fas fa-home"></i> <span>Home</span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active" >Departamentos</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/departamentos/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/departamentos/listar"> <i class="fas fa-list"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active" >Cargos</span></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/cargos/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/cargos/listar"> <i
-							class="fas fa-list"></i> <span>Listar </span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Funcionários</span></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/funcionarios/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/funcionarios/listar"> <i class="fas fa-list"></i> <span>Listar </span>
-					</a></li>
-				</ul>
-			</nav>
-		</aside>
-	
-	<!-- conteúdo principal da página -->
-	<section class="layout-content">
+	<!-- este é o conteúdo principal de cada página -->
+	<!-- adicionamos o recurso layout: e não o th: pq essa biblioteca fornece recursos um pouco mais avançado para trabalhar com páginas que devem ser abertas dentro do layout a partir da resposta do controller -->
+	<section class="layout-content" layout:fragment = "corpo">
 	
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -176,14 +103,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</section>		
-	
-	</div>
-	<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; Baseado no curso de MBallem (2018). Todos os direitos reservados.</span>
-		</div>
-	</footer>
 </body>
 </html>

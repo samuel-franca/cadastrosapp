@@ -35,4 +35,12 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 		return departamentoRepository.findAll();
 	}
 
+	@Override
+	public boolean hasCargos(Long id) {
+		if (findById(id).getCargos().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
 }
