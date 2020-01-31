@@ -11,6 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_funcionarios")
@@ -19,13 +24,22 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
+	//a anotação @NumberFormat faz a conversão do salário
+	//nessa anotação, devemos informar qual o estilo de dados. O CURRENCY é o tipo moeda para o campo salário
+	//e informamos também o padrão de dados que vai ser utilizado. Observe que é o padrão americano. Isso é necessário porque devemos salvar no bd como padrão americano
+	//dessa forma, ele converte o valor recebido (que está no padrão brasileiro) para o padrão americano
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	//columnDefinition serve para definir o tipo de dado que teremos no BD
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00") //vamos ter um tamanho de 7 dígitos, com duas casas depois da vírgula
 	private BigDecimal salario;
 	
+	//a anotação @DateTimeFormat tem o atributo iso, no qual informamos qual o tipo de data que iremos trabalhar (no nosso caso, somente DATE)
+	//poderia ser, por exemplo, data e hora ou somente a hora
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_entrada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_saida", columnDefinition = "DATE")
 	private LocalDate dataSaida;
 	

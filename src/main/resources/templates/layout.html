@@ -46,5 +46,47 @@
 	<footer th:replace="fragments/footer :: rodape">
 		<div>footer</div>
 	</footer>
+
+	<!-- para utilizar os recursos de qualquer plugin do JQuery (JQuery Mask, nesse caso), é necessário importar também o JQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
+	<!-- Obs.: o popper.min.js deve ser colocado antes de bootstrap.js para funcionar -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>	
+	
+	<script type="text/javascript">
+
+		<!-- os 2 métodos javascript a seguir são necessários para o modal -->
+		var url = '';
+		<!-- este método é para recuperar a URL que temos na tag button -->
+		<!-- 'button[id*="btn_"]' significa que caso o componente clicado tenha btn_ como valor inicial do id, cairemos nessa função -->
+		$('button[id*="btn_"]').click(function() {
+			<!-- $(this) faz com que o jquery utilize os valores que temos no componente utilizado nessa operação, ou seja, o button -->
+			<!-- ele dividiu a URL com o _, que fica depois do btn e pegou somente e posição 1, que é referente a URL -->
+			url = "/" + $(this).attr('id').split("_")[1];
+		});
+		
+		<!-- este método é para enviar a solicitação -->
+		<!-- ao clicar no botão de ok, a ação cai nessa função -->
+		$('#ok_confirm').click(function(){
+			<!-- document.location.href vai fazer a solicitação para a página a partir da URL que estamos atribuindo a ela -->
+			document.location.href = url;
+		});
+		
+		<!-- função que habilita o uso de popovers em qualquer lugar -->
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+		
+		$(document).ready(function(){
+		    $(".navbar-toggle").click(function(){
+		        $(".sidebar").toggleClass("sidebar-open");
+		    })
+		});
+		
+	</script>
 </body>
 </html>

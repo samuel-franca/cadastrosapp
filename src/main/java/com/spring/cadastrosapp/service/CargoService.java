@@ -12,6 +12,8 @@ public interface CargoService {
 
     Cargo findById(Long id);
     
-    List<Cargo> findAll();	
+    List<Cargo> findAll();
+
+	boolean hasFuncionarios(Long id);
 	
 }

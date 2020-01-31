@@ -19,6 +19,9 @@
 	        </nav>
 	
 	        <div class="container" id="cadastro">
+	        
+	        	<div th:replace = "fragments/alert"></div>
+	        	
 				<!-- O th:action, juntamente com a expressão que contém "@{URL}", fornece o contexto da aplicação -->
 				<!-- No th:object, a expressão declarada diz respeito a variável no contexto da aplicação -->
 				<!-- Observe que há uma operação ternária para identificar se está inserindo um novo registro ou editando um registro. No caso de edição, o método preEditar enviou um objeto com id -->
