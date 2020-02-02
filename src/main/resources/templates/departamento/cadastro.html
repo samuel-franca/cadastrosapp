@@ -11,7 +11,7 @@
 	                        <span>Cadastrar Departamentos</span>
 	                    </li>
 	                </ul>
-	                <a class="btn btn-primary btn-md" href="/departamentos/listar" role="button">
+	                <a class="btn btn-primary btn-md" th:href="@{/departamentos/listar}" role="button">
 	                    <span class="fas fa-list" title="Listar" aria-hidden="true"></span>
 	                    <span>Listar Departamentos</span>
 	                </a>
@@ -26,6 +26,10 @@
 				<!-- No th:object, a expressão declarada diz respeito a variável no contexto da aplicação -->
 				<!-- Observe que há uma operação ternária para identificar se está inserindo um novo registro ou editando um registro. No caso de edição, o método preEditar enviou um objeto com id -->
 	            <form th:action="${departamento.id == null} ? @{/departamentos/salvar} : @{/departamentos/editar}" th:object="${departamento}" method="POST">
+	            
+	            	<!-- é importante que esse fragmento fique dentro da tag form. Se colocar esse fragmento fora do form, as mensagens não serão exibidas na tela -->
+	            	<div th:replace = "fragments/validacao :: validacao"></div>
+	            
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Departamento</label>

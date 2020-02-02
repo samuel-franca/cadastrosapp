@@ -4,7 +4,7 @@
 <body>
 	<nav class="sidebar sidebar-open" th:fragment = "nav-sidebar">
 		<ul class="nav nav-pills">
-			<li class="nav-item"><a class="nav-link " href="/"> <i
+			<li class="nav-item"><a class="nav-link " th:href="@{/}"> <i
 					class="fas fa-home"></i> <span>Home</span>
 			</a></li>
 		</ul>
@@ -12,10 +12,10 @@
 		<ul class="nav nav-pills">
 			<li class="nav-item"><span class="nav-link active" >Departamentos</span></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/departamentos/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar</span>
+				th:href="@{/departamentos/cadastrar}"> <i class="fas fa-plus"></i> <span>Cadastrar</span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/departamentos/listar"> <i class="fas fa-list"></i>
+				th:href="@{/departamentos/listar}"> <i class="fas fa-list"></i>
 					<span>Listar </span>
 			</a></li>
 		</ul>
@@ -23,10 +23,10 @@
 		<ul class="nav nav-pills">
 			<li class="nav-item"><span class="nav-link active" >Cargos</span></li>
 			<li class="nav-item"><a class="nav-link" 
-				href="/cargos/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
+				th:href="@{/cargos/cadastrar}"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link" 
-				href="/cargos/listar"> <i
+				th:href="@{/cargos/listar}"> <i
 					class="fas fa-list"></i> <span>Listar </span>
 			</a></li>
 		</ul>
@@ -34,10 +34,10 @@
 		<ul class="nav nav-pills">
 			<li class="nav-item"><span class="nav-link active">Funcionários</span></li>
 			<li class="nav-item"><a class="nav-link" 
-				href="/funcionarios/cadastrar"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
+				th:href="@{/funcionarios/cadastrar}"> <i class="fas fa-plus"></i> <span>Cadastrar </span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link" 
-				href="/funcionarios/listar"> <i class="fas fa-list"></i> <span>Listar </span>
+				th:href="@{/funcionarios/listar}"> <i class="fas fa-list"></i> <span>Listar </span>
 			</a></li>
 		</ul>
 	</nav>

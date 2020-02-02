@@ -1,0 +1,17 @@
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+	<!-- ele testa se tem algum erro, ou seja, se tem algum campo do formulário, no qual nós validamos (nas Entidades), e que não passou na validação -->
+ 	<div th:if="${#fields.hasAnyErrors()}" th:fragment="validacao">
+		  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  <div th:each="error : ${#fields.detailedErrors()}">
+		    <i class="fas fa-exclamation-triangle"></i>
+		  	<span th:text="${error.message}"></span>
+		  </div>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+	</div>			
+</body>
+</html>	

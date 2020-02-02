@@ -103,7 +103,8 @@ body {
  * Footer
  */
 .layout-footer {
-	position: fixed;
+	/* mudou-se para relative (antes estava fixed) para evitar que os componentes sejam tampados pelo rodapé */
+	position: relative;
 	left: 0;
 	right: 0;
 	bottom: 0;

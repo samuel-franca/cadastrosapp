@@ -13,7 +13,7 @@
 	<meta name="author" content=""/>
 	<!-- caso precise adicionar uma figura na aba da página, utilize este comando -->
 	<!-- vale ressaltar que deve-se adicionar a pasta image dentro de static -->
-	<!-- <link rel="icon" href="/image/nome_da_figura.extensão"/> -->
+	<!-- <link rel="icon" th:href="@{/image/nome_da_figura.extensão}"/> -->
 
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 	
 	<!-- Custom styles for this template -->
-	<link href="/css/style.css" rel="stylesheet"/>
+	<link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
 	<header th:replace = "fragments/header :: cabecalho">

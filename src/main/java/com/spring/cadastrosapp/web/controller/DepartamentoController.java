@@ -1,8 +1,11 @@
 package com.spring.cadastrosapp.web.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,18 +27,22 @@ public class DepartamentoController {
 	//porque o controller não estava enviando um objeto departamento para a página
 	public String cadastrar(Departamento departamento) {
 		// /departamento para o diretório e /cadastro para a página html
-		return "/departamento/cadastro";
+		return "departamento/cadastro";
 	}
 	
 	@GetMapping("/listar")
 	//ModelMap permite enviar os departamentos como uma variável para a página de cadastro
 	public String listar(ModelMap model) {
 		model.addAttribute("departamentos", departamentoService.findAll());
-		return "/departamento/lista";
+		return "departamento/lista";
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Departamento departamento, RedirectAttributes attr) {
+	public String salvar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
+		if(result.hasErrors()) {
+			return "departamento/cadastro";
+		}		
+
 		departamentoService.save(departamento);
 		attr.addFlashAttribute("success", "Departamento inserido com sucesso.");
 		return "redirect:/departamentos/cadastrar";
@@ -45,12 +52,16 @@ public class DepartamentoController {
 	//o @PathVariable consegue recuperar para gente o id enviado no path
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("departamento", departamentoService.findById(id));
-		return "/departamento/cadastro";
+		return "departamento/cadastro";
 	}
 	
 	@PostMapping("/editar")
 	//para inserir a mensagem de fail ou success, nesse caso, foi necessário adicionar o RedirectAttributes, ao invés do ModelMap, porque temos uma ação de redirect
-	public String editar (Departamento departamento, RedirectAttributes attr) {
+	public String editar (@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
+		if(result.hasErrors()) {
+			return "departamento/cadastro";
+		}
+
 		//eu utilizei o save porque não há o update no JPARepository
 		//quando o registro já possui um ID, o spring faz o update ao invés de um insert, por isso não haveria a necessidade de ser um update
 		departamentoService.save(departamento);

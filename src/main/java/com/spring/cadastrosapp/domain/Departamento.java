@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
@@ -15,6 +17,10 @@ public class Departamento extends AbstractEntity<Long>{
 	
 	//inserimos apenas nome, porque o Id vai ser herdado a partir de AbstractEntity
 	
+	//se o nome estiver em branco, a submissão não será permitida e uma mensagem será exibida para o usuário
+	@NotBlank(message = "Informe um nome.")
+	//@Size verifica o tamanho da String
+	@Size(min = 3, max = 60, message = "O nome do departamento deve ter entre {min} e {max} caracteres.")
 	//quando o nome da coluna e o nome do atributo são os mesmos, não há necesidade de adicionar o atributo name
 	//ou seja, em @Column poderíamos ter apenas o nullable, unique e length
 	@Column(name = "nome", nullable = false, unique = true, length = 60)

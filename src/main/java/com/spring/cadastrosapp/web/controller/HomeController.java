@@ -10,7 +10,7 @@ public class HomeController {
 	//esse GetMapping vai acessar a raiz do projeto
 	@GetMapping("/")
 	public String home() {
-		return "/home";
+		return "home";
 	}
 
 }

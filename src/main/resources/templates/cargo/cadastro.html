@@ -12,7 +12,7 @@
 	                    </li>
 	                </ul>
 	            </div>
-	            <a class="btn btn-primary btn-md" href="/cargos/listar" role="button">
+	            <a class="btn btn-primary btn-md" th:href="@{/cargos/listar}" role="button">
 	                <span class="fas fa-list" title="Cadastro" aria-hidden="true"></span>
 	                <span>Listar Cargos</span>
 	            </a>
@@ -23,6 +23,10 @@
 	        	<div th:replace = "fragments/alert"></div>
 	        	
 	            <form th:action="${cargo.id == null} ? @{/cargos/salvar} : @{/cargos/editar}" th:object="${cargo}" method="POST">
+	            
+	            	<!-- é importante que esse fragmento fique dentro da tag form. Se colocar esse fragmento fora do form, as mensagens não serão exibidas na tela -->
+	            	<div th:replace = "fragments/validacao :: validacao"></div>
+
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Cargo</label>

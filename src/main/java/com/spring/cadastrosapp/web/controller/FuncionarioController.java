@@ -3,12 +3,17 @@ package com.spring.cadastrosapp.web.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +26,7 @@ import com.spring.cadastrosapp.domain.Funcionario;
 import com.spring.cadastrosapp.domain.UF;
 import com.spring.cadastrosapp.service.CargoService;
 import com.spring.cadastrosapp.service.FuncionarioService;
+import com.spring.cadastrosapp.web.validator.FuncionarioValidator;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -32,20 +38,31 @@ public class FuncionarioController {
 	@Autowired
 	private CargoService cargoService;
 	
+	//a anotação @InitBinder faz com que esse método seja o primeiro método dentro da classe FuncionárioController a ser executado
+	//dessa forma, ele ativa a validação e o spring MVC vai até a classe FuncionarioValidator para validar os campos antes de liberar o acesso ao método salvar ou editar
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new FuncionarioValidator());
+	}
+	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
 		// /funcionario para o diretório e /cadastro para a página html
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.findAll());
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(Funcionario funcionario, RedirectAttributes attr) {
+	public String salvar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attr) {
+		if(result.hasErrors()) {
+			return "funcionario/cadastro";
+		}
+		
 		funcionarioService.save(funcionario);
 		attr.addFlashAttribute("success", "Funcionário cadastrado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -71,7 +88,11 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Funcionario funcionario, RedirectAttributes attr) {
+	public String editar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attr) {
+		if(result.hasErrors()) {
+			return "funcionario/cadastro";
+		}
+		
 		funcionarioService.save(funcionario);
 		attr.addFlashAttribute("success", "Funcionário editado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -90,20 +111,20 @@ public class FuncionarioController {
 	//utilizamos o @RequestParam ao invés do @PathVariable porque o valor do nome não vai chegar pela URL, mas sim como um atributo (parâmetro) do request
 	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.findByName(nome));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@GetMapping("/buscar/cargo")
 	public String getPorCargo(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.findByCargo(id));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@GetMapping("/buscar/data")
 	public String getPorDatas(@RequestParam("entrada") @DateTimeFormat(iso = ISO.DATE) LocalDate entrada,
 							  @RequestParam("saida") @DateTimeFormat(iso = ISO.DATE) LocalDate saida, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.findByDate(entrada, saida));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 }
