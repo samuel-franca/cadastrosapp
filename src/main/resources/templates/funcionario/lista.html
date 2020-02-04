@@ -38,9 +38,9 @@
 	
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/nome}">
-	                                <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
+	                                <input class="form-control mr-sm-2" type="search" placeholder="Nome" aria-label="Search"
 	                                       th:name="nome" />
-	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+	                                <button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
 	                            </form>
 	                        </nav>
 	
@@ -57,7 +57,7 @@
 	                                    <option value="">Cargo</option>
 	                                    <option th:each="cargo : ${cargos}" th:value="${cargo.id}" th:text="${cargo.nome}"></option>
 	                                </select>
-	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+	                                <button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
 	                            </form>
 	                        </nav>
 	
@@ -74,7 +74,7 @@
 	                                       th:name="entrada" />
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
 	                                       th:name="saida" />
-	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+	                                <button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
 	                            </form>
 	                        </nav>
 	

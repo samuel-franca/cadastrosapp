@@ -15,17 +15,17 @@ import javax.validation.constraints.Size;
 @Table(name = "tb_enderecos")
 public class Endereco extends AbstractEntity<Long> {
 	
-	@NotBlank(message = "O logradouro é obrigatório.")
+	@NotBlank(message = "Obrigatório.")
 	@Size(min = 3, max = 255, message = "O logradouro deve ter entre {min} e {max} caracteres.")
 	@Column(nullable = false)
 	private String logradouro;
 	
-	@NotBlank(message = "O bairro é obrigatório.")
+	@NotBlank(message = "Obrigatório.")
 	@Size(min = 3, max = 255, message = "O bairro deve ter entre {min} e {max} caracteres.")
 	@Column(nullable = false)
 	private String bairro;
 
-	@NotBlank(message = "A cidade é obrigatória.")
+	@NotBlank(message = "Obrigatório.")
 	@Size(min = 3, max = 255, message = "A cidade deve ter entre {min} e {max} caracteres.")
 	@Column(nullable = false)
 	private String cidade;
@@ -38,12 +38,12 @@ public class Endereco extends AbstractEntity<Long> {
 	//criamos um Enum para representar esse objeto
 	private UF uf;
 	
-	@NotBlank(message = "O CEP é obrigatório.")
+	@NotBlank(message = "Obrigatório.")
 	@Size(min = 9, max = 9, message = "O CEP deve conter {max} caracteres.")
 	@Column(nullable = false, length = 9)
 	private String cep;
 	
-	@NotNull(message = "O número é obrigatório. Informe 0 para s/n.")
+	@NotNull(message = "Obrigatório.")
 	@Digits(integer = 5, fraction = 0)
 	@Column(nullable = false, length = 5)
 	private Integer numero;

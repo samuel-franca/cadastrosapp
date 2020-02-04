@@ -26,12 +26,12 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @Table(name = "tb_funcionarios")
 public class Funcionario extends AbstractEntity<Long> {
 
-	@NotBlank(message = "O nome do funcionário é obrigatório.")
+	@NotBlank(message = "Obrigatório.")
 	@Size(min = 3, max = 255, message = "O nome do funcionário deve ter entre {min} e {max} caracteres.")
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
-	@NotNull(message = "O salário do funcionário é obrigatório.")
+	@NotNull(message = "Obrigatório.")
 	//a anotação @NumberFormat faz a conversão do salário
 	//nessa anotação, devemos informar qual o estilo de dados. O CURRENCY é o tipo moeda para o campo salário
 	//e informamos também o padrão de dados que vai ser utilizado. Observe que é o padrão americano. Isso é necessário porque devemos salvar no bd como padrão americano
@@ -41,7 +41,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00") //vamos ter um tamanho de 7 dígitos, com duas casas depois da vírgula
 	private BigDecimal salario;
 	
-	@NotNull(message = "A data de entrada do funcionário é obrigatória.")
+	@NotNull(message = "Obrigatório.")
 	@PastOrPresent(message = "A data deve ser igual ou anterior a atual.")
 	//a anotação @DateTimeFormat tem o atributo iso, no qual informamos qual o tipo de data que iremos trabalhar (no nosso caso, somente DATE)
 	//poderia ser, por exemplo, data e hora ou somente a hora
@@ -62,7 +62,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
 	
-	@NotNull(message = "Selecione um cargo.")
+	@NotNull(message = "Obrigatório.")
 	@ManyToOne
 	@JoinColumn(name = "cargo_id_fk")
 	private Cargo cargo;
